@@ -27,14 +27,14 @@ public class Provider{
         //参数3 : exclusive   是否独占队列--当前队列是否只为本链接使用
         //参数4 : autoDelete  是否在消费完成后自动删除队列
         //参数5 : 额外参数
-        channel.queueDeclare("hello2",true,false,false,null);
+        channel.queueDeclare("hello3",true,false,true,null);
 
         //发布消息
         //参数1 : exchange    交换机名称
         //参数2 : 队列名称
         //参数3 : 传递消息的额外设置   可以在此处设置队列消息持久化  MessageProperties.PERSISTENT_TEXT_PLAIN:持久化消息
         //参数4 : 消息的具体内容
-        channel.basicPublish("", "hello2", MessageProperties.PERSISTENT_TEXT_PLAIN,"hello,rabbitmq".getBytes());
+        channel.basicPublish("", "hello3", MessageProperties.PERSISTENT_TEXT_PLAIN,"hello,rabbitmq".getBytes());
 
         //关闭连接
         RabbitMQUtils.closeConnectionAndChanel(channel,connection);
