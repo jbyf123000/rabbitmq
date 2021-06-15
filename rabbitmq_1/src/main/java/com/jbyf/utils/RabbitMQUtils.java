@@ -8,19 +8,24 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitMQUtils {
+    private static ConnectionFactory connectionFactory = new ConnectionFactory();
+
+    static{
+        //设置连接主机
+        connectionFactory.setHost("192.168.44.129");
+        //设置连接主机的端口
+        connectionFactory.setPort(5672);
+        //设置连接的虚拟主机
+        connectionFactory.setVirtualHost("/ems");
+        //设置连接的账号密码
+        connectionFactory.setUsername("ems");
+        connectionFactory.setPassword("123");
+    }
+
+
     //定义提供连接对象的方法
     public static Connection getConnection(){
         try {
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            //设置连接主机
-            connectionFactory.setHost("192.168.44.129");
-            //设置连接主机的端口
-            connectionFactory.setPort(5672);
-            //设置连接的虚拟主机
-            connectionFactory.setVirtualHost("/ems");
-            //设置连接的账号密码
-            connectionFactory.setUsername("ems");
-            connectionFactory.setPassword("123");
             return connectionFactory.newConnection();
         } catch (Exception e) {
             e.printStackTrace();
