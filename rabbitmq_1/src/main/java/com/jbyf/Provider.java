@@ -1,5 +1,6 @@
 package com.jbyf;
 
+import com.jbyf.utils.RabbitMQUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -13,20 +14,8 @@ public class Provider{
     //生产消息的代码
     @Test
     public void testSendMessage() throws IOException, TimeoutException {
-        //创建连接mq的连接工厂
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        //设置rabbitmq的主机
-        connectionFactory.setHost("192.168.44.129");
-        //设置端口号
-        connectionFactory.setPort(5672);
-        //设置连接那个虚拟主机
-        connectionFactory.setVirtualHost("/ems");
-        //设置访问虚拟主机的用户名和密码
-        connectionFactory.setUsername("ems");
-        connectionFactory.setPassword("123");
-
         //获取连接对象
-        Connection connection = connectionFactory.newConnection();
+        Connection connection = RabbitMQUtils.getConnection();
 
         //通过连接获取连接中的通道对象
         Channel channel = connection.createChannel();
@@ -46,8 +35,7 @@ public class Provider{
         //参数4 : 消息的具体内容
         channel.basicPublish("", "hello",null,"hello,rabbitmq".getBytes());
 
-        channel.close();
-        connection.close();
-
+        //关闭连接
+        RabbitMQUtils.closeConnectionAndChanel(channel,connection);
     }
 }
