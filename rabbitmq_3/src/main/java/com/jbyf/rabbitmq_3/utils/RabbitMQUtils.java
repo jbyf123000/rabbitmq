@@ -1,4 +1,4 @@
-package utils;
+package com.jbyf.rabbitmq_3.utils;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
