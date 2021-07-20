@@ -1,8 +1,8 @@
-package workqueue;
+package jbyf.workqueue;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import utils.RabbitMQUtils;
+import jbyf.utils.RabbitMQUtils;
 
 /**
  *      `Work queues`，也被称为（`Task queues`），任务模型。

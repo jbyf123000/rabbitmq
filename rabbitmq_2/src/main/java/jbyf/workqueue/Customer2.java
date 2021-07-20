@@ -1,7 +1,7 @@
-package workqueue;
+package jbyf.workqueue;
 
 import com.rabbitmq.client.*;
-import utils.RabbitMQUtils;
+import jbyf.utils.RabbitMQUtils;
 
 import java.io.IOException;
 
