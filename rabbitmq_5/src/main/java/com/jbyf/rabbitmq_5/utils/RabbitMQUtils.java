@@ -6,7 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 
 public class RabbitMQUtils {
     private static ConnectionFactory connectionFactory = new ConnectionFactory();
-    public final static String EXCHANGE_NAME = "driect_test_exchange";
+    public final static String BASIC_EXCHANGE_NAME = "_test_exchange";
     public final static String BASIC_QUEUE_NAME = "driect_consume_";
 
     static{

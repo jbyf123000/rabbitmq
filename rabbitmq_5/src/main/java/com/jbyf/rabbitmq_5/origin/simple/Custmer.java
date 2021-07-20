@@ -6,7 +6,7 @@ import com.rabbitmq.client.*;
 
 import java.io.IOException;
 
-public class Consumer1 {
+public class Custmer {
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitMQUtils.getConnection();
         Channel channel = connection.createChannel();
