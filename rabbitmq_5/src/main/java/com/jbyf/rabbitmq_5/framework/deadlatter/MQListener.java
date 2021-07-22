@@ -7,13 +7,22 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Date;
 
 @Component
 public class MQListener {
-    //死信队列监听者
     @RabbitListener(
-            queues = { "spring.test.queue" }
+            queues = {"dead-queue"}
     )
+    public void ttlListener(String msg,Message message,Channel channel) throws Exception{
+        //信息发往业务交换机,业务交换机无人使用,则进入dead-queue
+        System.out.println(msg + " now time: " + new Date());
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+    }
+    //死信队列监听者
+//    @RabbitListener(
+//            queues = { "spring.test.queue" }
+//    )
     public void deadqueueListener(String msg,Message message,Channel channel) throws Exception{
         try {
             int i = 1/0;

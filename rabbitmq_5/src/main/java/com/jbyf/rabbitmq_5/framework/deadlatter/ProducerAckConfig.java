@@ -41,9 +41,12 @@ public class ProducerAckConfig {
         arguments.put("x-dead-letter-exchange","dead-exchange");
         //规定 死信 routingKey
         arguments.put("x-dead-letter-routing-key","msg.dead");
+        //添加ttl
+        arguments.put("x-message-ttl", 5000);//单位毫秒
         return new Queue("spring.test.queue", true,
                 false, false, arguments);
     }
+
 
 
     /**
