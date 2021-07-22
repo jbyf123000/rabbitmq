@@ -11,6 +11,10 @@ import java.util.Date;
 
 @Component
 public class MQListener {
+
+
+
+
     @RabbitListener(
             queues = {"dead-queue"}
     )
